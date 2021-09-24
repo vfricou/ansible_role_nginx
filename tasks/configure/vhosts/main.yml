@@ -1,0 +1,12 @@
+---
+- name: "configure | ssl_config | deploy vhost templates"
+  ansible.builtin.template:
+    dest: '/etc/nginx/sites-availables/templates/{{ item.dest }}'
+    src: '{{ item.src }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    backup: yes
+  loop:
+    - { src: 'nginx/vhosts/http-reverse_proxy-template.vhost.j2', dest: 'http-rp-template.vhost' }
+    - { src: 'nginx/vhosts/https-reverse_proxy-template.vhost.j2', dest: 'https-rp-template.vhost' }

@@ -1,0 +1,12 @@
+server {
+  listen   80;
+  server_name 127.0.0.1;
+  access_log {{ nginx_log_path }}/stub_status_access.log combined;
+  error_log {{ nginx_log_path }}/stub_status_error.log;
+  stub_status on;
+  location /stub_status {
+    allow 127.0.0.1;
+    deny all;
+    stub_status;
+  }
+}

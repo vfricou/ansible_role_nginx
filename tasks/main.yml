@@ -3,7 +3,31 @@
 # @meta description: Nginx installation and configuration role
 
 - name: "import validator tasks"
-  import_tasks: validator/check_os.yml
+  ansible.builtin.import_tasks: validator/check_os.yml
   tags:
     - always
 
+- name: "perform installation tasks"
+  block:
+    - name: "import prerequisites tasks"
+      ansible.builtin.import_tasks: prerequisites/main.yml
+    - name: "import install tasks"
+      ansible.builtin.import_tasks: install/main.yml
+    - name: "import base configuration tasks"
+      ansible.builtin.import_tasks: configure/base_config/main.yml
+  tags:
+    - install
+
+- name: "perform configuration tasks"
+  block:
+    - name: "import stub status configuration"
+      ansible.builtin.import_tasks: configure/stub_status/main.yml
+    - name: "import nginx main configuration"
+      ansible.builtin.import_tasks: configure/nginx_config/main.yml
+    - name: "import nginx ssl configuration"
+      ansible.builtin.import_tasks: configure/ssl_config/main.yml
+    - name: "import nginx vhost template configuration"
+      ansible.builtin.import_tasks: configure/vhosts/main.yml
+  tags:
+    - install
+    - configure

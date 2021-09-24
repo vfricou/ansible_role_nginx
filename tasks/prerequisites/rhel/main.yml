@@ -1,0 +1,5 @@
+---
+- name: "prerequisites | rhel | ensure epel-release present"
+  ansible.builtin.yum:
+    state: present
+    name: epel-release

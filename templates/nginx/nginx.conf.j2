@@ -1,0 +1,27 @@
+user  nginx;
+worker_processes  {{ nginx_worker_process }};
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+events {
+    worker_connections  {{ nginx_worker_connection }};
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf-enabled/*.conf;
+    include /etc/nginx/sites-enabled/*.vhost;
+
+    access_log  {{ nginx_log_path }}/access.log  main;
+}
+# vim: set noai ts=4 sw=4 et:

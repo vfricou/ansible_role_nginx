@@ -1,0 +1,10 @@
+---
+- name: "configure | nginx_config | deploy nginx main config file"
+  ansible.builtin.template:
+    src: nginx/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    backup: yes
+  notify: restart nginx

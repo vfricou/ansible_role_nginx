@@ -1,0 +1,50 @@
+---
+- name: "configure | base_config | create folders stucture"
+  ansible.builtin.file:
+    path: '{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: directory
+  with_items:
+    - /etc/nginx/conf-availables
+    - /etc/nginx/conf-enabled
+    - /etc/nginx/sites-availables
+    - /etc/nginx/sites-availables/templates
+    - /etc/nginx/sites-enabled
+    - /etc/nginx/conf.d/ssl
+    - /etc/nginx/conf.d/ssl/configs
+    - /etc/nginx/conf.d/ssl/files
+    - /etc/nginx/conf.d/proxy
+    - /etc/nginx/conf.d/robots/configs
+    - /etc/nginx/conf.d/robots/files
+
+- name: "configure | base_config | deploy base configurations"
+  ansible.builtin.copy:
+    dest: '/etc/nginx/{{ item.dest }}'
+    src: '{{ item.src }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    backup: yes
+  loop:
+    - { src: 'nginx/configs/logging.conf', dest: 'conf-availables/logging.conf' }
+    - { src: 'nginx/configs/security.conf', dest: 'conf-availables/security.conf' }
+    - { src: 'nginx/configs/proxy_params.conf', dest: 'conf.d/proxy/proxy_params.conf' }
+    - { src: 'nginx/configs/ssl-template.conf', dest: 'conf.d/ssl-template.conf' }
+    - { src: 'nginx/configs/robots/disallow_all.conf', dest: 'conf.d/robots/configs/disallow_all.conf' }
+    - { src: 'nginx/configs/robots/disallow_all.txt', dest: 'conf.d/robots/files/disallow_all.txt' }
+
+- name: "configure | base_config | create configuration links to enable"
+  ansible.builtin.file:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    owner: 'root'
+    group: 'root'
+    state: link
+  loop:
+    - { src: '/etc/nginx/conf-availables/logging.conf', dest: '/etc/nginx/conf-enabled/logging.conf' }
+    - { src: '/etc/nginx/conf-availables/security.conf', dest: '/etc/nginx/conf-enabled/security.conf' }
+
+- name: "configure | base_config | import cleanup task"
+  ansible.builtin.import_tasks: clean_base_file.yml
