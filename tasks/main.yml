@@ -1,0 +1,9 @@
+---
+# @meta author: Vincent FRICOU
+# @meta description: Nginx installation and configuration role
+
+- name: "import validator tasks"
+  import_tasks: validator/check_os.yml
+  tags:
+    - always
+

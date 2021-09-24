@@ -1,0 +1,30 @@
+---
+galaxy_info:
+  role_name: "nginx"
+  author: "Vincent FRICOU"
+  namespace: "vfricou"
+  description: 'Nginx installation and configuration role'
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+    - name: Ubuntu
+      versions:
+        - 18.04
+        - 20.04
+        - 21.04
+    - name: Rocky
+      versions:
+        - 8
+    - name: OpenSuse
+      versions:
+        - 15
+
+dependencies: []
