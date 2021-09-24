@@ -8,3 +8,5 @@ nginx_ssl_ciphers: 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:
 nginx_ssl_curve_dh: 'secp521r1:secp384r1'
 nginx_ssl_ocsp_resolver: '1.1.1.1'
 nginx_ssl_ocsp_enabled: 'on'
+nginx_logrotate_general_retention: 15
+nginx_logrotate_vhost_retention: 365

@@ -18,6 +18,9 @@
     - /etc/nginx/conf.d/proxy
     - /etc/nginx/conf.d/robots/configs
     - /etc/nginx/conf.d/robots/files
+    - '{{ nginx_log_path }}/vhost'
+    - '{{ nginx_log_path }}/archives'
+    - '{{ nginx_log_path }}/archives/vhost'
 
 - name: "configure | base_config | deploy base configurations"
   ansible.builtin.copy:

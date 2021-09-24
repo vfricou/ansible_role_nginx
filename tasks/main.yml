@@ -28,6 +28,8 @@
       ansible.builtin.import_tasks: configure/ssl_config/main.yml
     - name: "import nginx vhost template configuration"
       ansible.builtin.import_tasks: configure/vhosts/main.yml
+    - name: "import logrotate configuration"
+      ansible.builtin.import_tasks: configure/logrotate/main.yml
   tags:
     - install
     - configure
