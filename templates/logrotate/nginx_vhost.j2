@@ -1,0 +1,15 @@
+/var/log/nginx/vhost/*.log {
+        daily
+        missingok
+        rotate {{ nginx_logrotate_vhost_retention }}
+        compress
+        notifempty
+        create 640 nginx adm
+        sharedscripts
+        olddir {{ nginx_log_path }}/archives/vhost
+        postrotate
+                if [ -f /var/run/nginx.pid ]; then
+                        kill -USR1 `cat /var/run/nginx.pid`
+                fi
+        endscript
+}

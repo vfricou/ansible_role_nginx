@@ -1,0 +1,19 @@
+---
+- name: "install | rhel | setup nginx official repository"
+  ansible.builtin.yum_repository:
+    name: nginx
+    description: Official NGINX repository
+    baseurl: '{{ nginx_rhel_repo_url }}'
+    gpgcheck: yes
+    gpgkey: https://nginx.org/keys/nginx_signing.key
+    async: no
+    module_hotfixes: yes
+    enabled: yes
+
+- name: "install | rhel | install nginx packages"
+  ansible.builtin.yum:
+    state: present
+    name: nginx
+  notify: restart nginx
+
+

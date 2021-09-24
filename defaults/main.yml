@@ -1,1 +1,12 @@
 ---
+nginx_rhel_repo_url: 'https://nginx.org/packages/rhel/{{ ansible_distribution_major_version }}/x86_64/'
+nginx_log_path: '/var/log/nginx'
+nginx_worker_process: 2
+nginx_worker_connection: 1024
+nginx_ssl_protocols: 'TLSv1.2 TLSv1.3'
+nginx_ssl_ciphers: 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-ECDSA-CHACHA20-POLY1305-D:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305-D:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4'
+nginx_ssl_curve_dh: 'secp521r1:secp384r1'
+nginx_ssl_ocsp_resolver: '1.1.1.1'
+nginx_ssl_ocsp_enabled: 'on'
+nginx_logrotate_general_retention: 15
+nginx_logrotate_vhost_retention: 365

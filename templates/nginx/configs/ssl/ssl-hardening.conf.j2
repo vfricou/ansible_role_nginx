@@ -1,0 +1,11 @@
+ssl_dhparam /etc/nginx/conf.d/ssl/files/dh4096.pem;
+ssl_ecdh_curve {{ nginx_ssl_curve_dh }};
+ssl_prefer_server_ciphers on;
+ssl_session_cache shared:SSL:10m;
+ssl_session_timeout 8h;
+ssl_session_tickets off;
+ssl_buffer_size 1400;
+resolver {{ nginx_ssl_ocsp_resolver }};
+ssl_stapling {{ nginx_ssl_ocsp_enabled }};
+ssl_stapling_verify {{ nginx_ssl_ocsp_enabled }};
+# vim: set noai ts=4 sw=4 et:
