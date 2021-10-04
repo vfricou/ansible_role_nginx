@@ -2,4 +2,6 @@
 - name: "prerequisites | rhel | ensure epel-release present"
   ansible.builtin.yum:
     state: present
-    name: epel-release
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    disable_gpg_check: yes
+  when: ansible_distribution_major_version|int == 8

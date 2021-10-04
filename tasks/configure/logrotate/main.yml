@@ -7,5 +7,5 @@
     group: 'root'
     mode: '0644'
   loop:
-    - { src: logrotate/nginx_general.j2, dest: /etc/logrotate.d/nginx }
-    - { src: logrotate/nginx_vhost.j2, dest: /etc/logrotate.d/nginx-vhost }
+    - {src: logrotate/nginx_general.j2, dest: /etc/logrotate.d/nginx}
+    - {src: logrotate/nginx_vhost.j2, dest: /etc/logrotate.d/nginx-vhost}

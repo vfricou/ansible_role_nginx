@@ -15,5 +15,3 @@
     state: present
     name: nginx
   notify: restart nginx
-
-

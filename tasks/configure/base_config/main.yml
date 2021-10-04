@@ -31,12 +31,12 @@
     mode: '0644'
     backup: yes
   loop:
-    - { src: 'nginx/configs/logging.conf', dest: 'conf-availables/logging.conf' }
-    - { src: 'nginx/configs/security.conf', dest: 'conf-availables/security.conf' }
-    - { src: 'nginx/configs/proxy_params.conf', dest: 'conf.d/proxy/proxy_params.conf' }
-    - { src: 'nginx/configs/ssl-template.conf', dest: 'conf.d/ssl-template.conf' }
-    - { src: 'nginx/configs/robots/disallow_all.conf', dest: 'conf.d/robots/configs/disallow_all.conf' }
-    - { src: 'nginx/configs/robots/disallow_all.txt', dest: 'conf.d/robots/files/disallow_all.txt' }
+    - {src: 'nginx/configs/logging.conf', dest: 'conf-availables/logging.conf'}
+    - {src: 'nginx/configs/security.conf', dest: 'conf-availables/security.conf'}
+    - {src: 'nginx/configs/proxy_params.conf', dest: 'conf.d/proxy/proxy_params.conf'}
+    - {src: 'nginx/configs/ssl-template.conf', dest: 'conf.d/ssl-template.conf'}
+    - {src: 'nginx/configs/robots/disallow_all.conf', dest: 'conf.d/robots/configs/disallow_all.conf'}
+    - {src: 'nginx/configs/robots/disallow_all.txt', dest: 'conf.d/robots/files/disallow_all.txt'}
 
 - name: "configure | base_config | create configuration links to enable"
   ansible.builtin.file:
@@ -46,8 +46,8 @@
     group: 'root'
     state: link
   loop:
-    - { src: '/etc/nginx/conf-availables/logging.conf', dest: '/etc/nginx/conf-enabled/logging.conf' }
-    - { src: '/etc/nginx/conf-availables/security.conf', dest: '/etc/nginx/conf-enabled/security.conf' }
+    - {src: '/etc/nginx/conf-availables/logging.conf', dest: '/etc/nginx/conf-enabled/logging.conf'}
+    - {src: '/etc/nginx/conf-availables/security.conf', dest: '/etc/nginx/conf-enabled/security.conf'}
 
 - name: "configure | base_config | import cleanup task"
   ansible.builtin.import_tasks: clean_base_file.yml

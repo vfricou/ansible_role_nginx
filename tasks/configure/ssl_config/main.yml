@@ -8,5 +8,5 @@
     mode: '0644'
     backup: yes
   loop:
-    - { src: 'nginx/configs/ssl/ssl-ciphers.conf.j2', dest: 'conf.d/ssl/configs/ssl-ciphers.conf' }
-    - { src: 'nginx/configs/ssl/ssl-hardening.conf.j2', dest: 'conf.d/ssl/configs/ssl-hardening.conf' }
+    - {src: 'nginx/configs/ssl/ssl-ciphers.conf.j2', dest: 'conf.d/ssl/configs/ssl-ciphers.conf'}
+    - {src: 'nginx/configs/ssl/ssl-hardening.conf.j2', dest: 'conf.d/ssl/configs/ssl-hardening.conf'}

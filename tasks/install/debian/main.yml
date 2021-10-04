@@ -1,0 +1,29 @@
+---
+- name: "install | debian | deploy nginx repository key"
+  apt_key:
+    url: 'https://nginx.org/keys/nginx_signing.key'
+    state: present
+
+- name: "install | debian | setup nginx repository"
+  apt_repository:
+    repo: deb http://nginx.org/packages/debian {{ ansible_distribution_release }} nginx
+    state: present
+    filename: nginx
+  when: ansible_distribution == 'Debian'
+
+- name: "install | debian | setup nginx repository"
+  apt_repository:
+    repo: deb http://nginx.org/packages/debian {{ ansible_distribution_release }} nginx
+    state: present
+    filename: nginx
+  when: ansible_distribution == 'Ubuntu'
+
+- name: "install | debian | install nginx"
+  apt:
+    name: nginx
+    update_cache: yes
+    state: present
+    dpkg_options: "{{ debian['dpkg_options'] }}"
+    force_apt_get: yes
+    install_recommends: no
+  notify: restart nginx

@@ -8,5 +8,5 @@
     mode: '0644'
     backup: yes
   loop:
-    - { src: 'nginx/vhosts/http-reverse_proxy-template.vhost.j2', dest: 'http-rp-template.vhost' }
-    - { src: 'nginx/vhosts/https-reverse_proxy-template.vhost.j2', dest: 'https-rp-template.vhost' }
+    - {src: 'nginx/vhosts/http-reverse_proxy-template.vhost.j2', dest: 'http-rp-template.vhost'}
+    - {src: 'nginx/vhosts/https-reverse_proxy-template.vhost.j2', dest: 'https-rp-template.vhost'}
