@@ -1,4 +1,4 @@
-FROM docker.io/library/debian:10-slim
+FROM docker.io/library/ubuntu:20.04
 
 ENV container docker
 ENV LC_ALL C
@@ -8,7 +8,8 @@ RUN apt update
 RUN apt -y install \
               systemd \
               systemd-sysv \
-              python3
+              python3 \
+              linux-image-generic
 RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /etc/systemd/system/*.wants/* \
     /lib/systemd/system/local-fs.target.wants/* \
