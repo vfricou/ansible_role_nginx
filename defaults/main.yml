@@ -1,5 +1,6 @@
 ---
 nginx_rhel_repo_url: 'https://nginx.org/packages/rhel/{{ ansible_distribution_major_version }}/x86_64/'
+nginx_web_root: '/srv/web'
 nginx_log_path: '/var/log/nginx'
 nginx_worker_process: 2
 nginx_worker_connection: 1024

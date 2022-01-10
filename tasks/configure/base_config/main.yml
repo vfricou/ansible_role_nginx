@@ -39,6 +39,17 @@
     - {src: 'nginx/configs/robots/disallow_all.conf', dest: 'conf.d/robots/configs/disallow_all.conf'}
     - {src: 'nginx/configs/robots/disallow_all.txt', dest: 'conf.d/robots/files/disallow_all.txt'}
 
+- name: "configure | base_config | deploy dynamic configurations"
+  ansible.builtin.template:
+    dest: '/etc/nginx/{{ item.dest }}'
+    src: '{{ item.src }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    backup: yes
+  loop:
+    - {src: 'nginx/configs/lets-encrypt-location.conf.j2', dest: 'conf.d/ssl/le-location.conf'}
+
 - name: "configure | base_config | create configuration links to enable"
   ansible.builtin.file:
     src: '{{ item.src }}'
