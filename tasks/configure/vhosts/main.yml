@@ -7,6 +7,15 @@
     group: 'root'
     mode: '0644'
     backup: yes
+  vars:
+    le_enabled: '{{ item.le_enabled }}'
+    type: '{{ item.type }}'
   loop:
-    - {src: 'nginx/vhosts/http-reverse_proxy-template.vhost.j2', dest: 'http-rp-template.vhost'}
-    - {src: 'nginx/vhosts/https-reverse_proxy-template.vhost.j2', dest: 'https-rp-template.vhost'}
+    - {src: 'nginx/vhosts/http-template.vhost.j2', dest: 'http-rp-template.vhost', le_enabled: 'no', type: 'rp'}
+    - {src: 'nginx/vhosts/https-template.vhost.j2', dest: 'https-rp-template.vhost', le_enabled: 'no', type: 'rp'}
+    - {src: 'nginx/vhosts/http-template.vhost.j2', dest: 'http-rp-le-template.vhost', le_enabled: 'yes', type: 'rp'}
+    - {src: 'nginx/vhosts/https-template.vhost.j2', dest: 'https-rp-le-template.vhost', le_enabled: 'yes', type: 'rp'}
+    - {src: 'nginx/vhosts/http-template.vhost.j2', dest: 'http-web-template.vhost', le_enabled: 'no', type: 'web'}
+    - {src: 'nginx/vhosts/https-template.vhost.j2', dest: 'https-web-template.vhost', le_enabled: 'no', type: 'web'}
+    - {src: 'nginx/vhosts/http-template.vhost.j2', dest: 'http-web-le-template.vhost', le_enabled: 'yes', type: 'web'}
+    - {src: 'nginx/vhosts/https-template.vhost.j2', dest: 'https-web-le-template.vhost', le_enabled: 'yes', type: 'web'}

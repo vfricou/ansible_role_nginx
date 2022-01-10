@@ -1,0 +1,41 @@
+server {
+    listen 80;
+    server_name SERVER_FQDN;
+
+    access_log  {{ nginx_log_path }}/vhost/SERVER_FQDN.access.log combined;
+    access_log  {{ nginx_log_path }}/vhost/SERVER_FQDN.extend.log extended_infos;
+    access_log  {{ nginx_log_path }}/vhost_access.log vhost_combined;
+    error_log   {{ nginx_log_path }}/vhost/SERVER_FQDN.error.log warn;
+
+    include /etc/nginx/conf.d/robots/configs/disallow_all.conf;
+{% if le_enabled == 'yes' %}
+
+    include /etc/nginx/conf.d/ssl/le-location.conf;
+{% endif %}
+
+    location ~* \.(?:git|svn|hg) {
+        deny all;
+    }
+
+{% if type == 'web' %}
+    location / {
+		    index index.php;
+		    try_files	$uri $uri/ /index.php$is_args$args;
+	  }
+
+	  location ~ [^/]\.php(/|$) {
+	      include /etc/nginx/conf.d/fastcgi_params.conf;
+	    	fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+		    if (!-f $document_root$fastcgi_script_name) {
+		    	return 404;
+		    }
+        fastcgi_pass	127.0.0.1:9000;
+  	}
+{% else %}
+    location / {
+        include /etc/nginx/conf.d/proxy/proxy_params.conf;
+        proxy_pass http://BACKEND_SERVER;
+    }
+{% endif %}
+}
+# vim: set syntax autoindent expandtab tabstop=4 shiftwidth=4 :

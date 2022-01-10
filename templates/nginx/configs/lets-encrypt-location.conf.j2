@@ -1,0 +1,11 @@
+location ^~ /.well-known/ {
+    default_type  "text/plain";
+    alias         {{ nginx_web_root }}/.well-known/;
+    autoindex     off;
+    access_log    {{ nginx_log_path }}/acme.access.log combined;
+    error_log     {{ nginx_log_path }}/acme.debug.log debug;
+}
+location = /.well-known/acme-challenge/ {
+    return 404;
+}
+# vim: set syntax autoindent expandtab tabstop=4 shiftwidth=4 :
