@@ -34,6 +34,7 @@
     - {src: 'nginx/configs/logging.conf', dest: 'conf-availables/logging.conf'}
     - {src: 'nginx/configs/security.conf', dest: 'conf-availables/security.conf'}
     - {src: 'nginx/configs/proxy_params.conf', dest: 'conf.d/proxy/proxy_params.conf'}
+    - {src: 'nginx/configs/fastcgi_params.conf', dest: 'conf.d/fastcgi_params.conf'}
     - {src: 'nginx/configs/ssl-template.conf', dest: 'conf.d/ssl-template.conf'}
     - {src: 'nginx/configs/robots/disallow_all.conf', dest: 'conf.d/robots/configs/disallow_all.conf'}
     - {src: 'nginx/configs/robots/disallow_all.txt', dest: 'conf.d/robots/files/disallow_all.txt'}
