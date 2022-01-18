@@ -6,14 +6,14 @@
 
 - name: "install | debian | setup nginx repository"
   apt_repository:
-    repo: deb http://nginx.org/packages/debian {{ ansible_distribution_release }} nginx
+    repo: deb {{ nginx_debian_repo_url }} {{ ansible_distribution_release }} nginx
     state: present
     filename: nginx
   when: ansible_distribution == 'Debian'
 
 - name: "install | debian | setup nginx repository"
   apt_repository:
-    repo: deb http://nginx.org/packages/ubuntu {{ ansible_distribution_release }} nginx
+    repo: deb {{ nginx_ubuntu_repo_url }} {{ ansible_distribution_release }} nginx
     state: present
     filename: nginx
   when: ansible_distribution == 'Ubuntu'
