@@ -8,6 +8,7 @@ supported_platforms:
   - name: Rocky
     versions:
       - 8
+      - 9
   - name: Ubuntu
     versions:
       - 18.04
