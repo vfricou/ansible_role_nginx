@@ -17,6 +17,7 @@ Feel free to fork and update this according to your requirements.
 **Debian** :
 - buster (10)
 - bullseye (11)
+- bookworm (12)
 
 **Ubuntu** :
 - Bionic Beaver (18.04) - ESS : 04/2023 / EOL : 04/2028
@@ -25,6 +26,7 @@ Feel free to fork and update this according to your requirements.
 
 **Rocky** :
 - 8
+- 9
 
 **RHEL** :
 - 8
